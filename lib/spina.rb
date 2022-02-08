@@ -59,13 +59,8 @@ module Spina
   self.importmap = Importmap::Map.new
     
   # Tailwind content
-<<<<<<< HEAD
-  # In order for Tailwind to generate all of the CSS Spina needs,
-  # it needs to know about every single file in your project
-=======
   # In order for Tailwind to generate all of the CSS Spina needs, 
-  # it needs to know about every single file in your project 
->>>>>>> 16ebd800242fd5fe1169fec9229c724e50d84548
+  # it needs to know about every single file in your project
   # that contains any Tailwind class names.
   # Make sure to add your own glob patterns if you're extending
   # Spina's UI.
@@ -83,29 +78,17 @@ module Spina
     
     def config
       config_obj = self.config_original
-<<<<<<< HEAD
 
-=======
-      
->>>>>>> 16ebd800242fd5fe1169fec9229c724e50d84548
       def config_obj.tailwind_purge_content
         ActiveSupport::Deprecation.warn("config.tailwind_purge_content has been renamed to config.tailwind_content")
         tailwind_content
       end
-<<<<<<< HEAD
 
-=======
-      
->>>>>>> 16ebd800242fd5fe1169fec9229c724e50d84548
       def config_obj.tailwind_purge_content=(paths)
         ActiveSupport::Deprecation.warn("config.tailwind_purge_content has been renamed to config.tailwind_content")
         tailwind_content = paths
       end
-<<<<<<< HEAD
 
-=======
-      
->>>>>>> 16ebd800242fd5fe1169fec9229c724e50d84548
       def config_obj.embedded_image_size=(image_size)
         if image_size.is_a? String
           ActiveSupport::Deprecation.warn("Spina embedded_image_size should be set to an array of arguments to be passed to the :resize_to_limit ImageProcessing macro. https://github.com/janko/image_processing/blob/master/doc/minimagick.md#resize_to_limit")
