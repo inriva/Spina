@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
     "homepage_uri" => "https://www.spinacms.com",
     "bug_tracker_uri" => "https://github.com/SpinaCMS/Spina/issues",
     "documentation_uri" => "https://www.spinacms.com/docs",
-    "changelog_uri" => "https://github.com/SpinaCMS/Spina/blob/master/CHANGELOG.md",
+    "changelog_uri" => "https://github.com/SpinaCMS/Spina/blob/main/CHANGELOG.md",
     "source_code_uri" => "https://github.com/SpinaCMS/Spina",
   }
 
@@ -44,4 +44,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'babosa'
   gem.add_dependency 'jsonapi-serializer'
   gem.add_dependency 'browser'
+  gem.add_dependency 'tailwindcss-rails', '>= 2.0.0'
 end

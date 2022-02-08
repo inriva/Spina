@@ -1,5 +1,21 @@
 # Spina CMS Changelog
 
+## 2.8
+
+### 2.8.1 (January 29nd, 2022)
+* Added hints to parts when editing pages
+* Fixed bug with signed_id for Attachment
+* Fixed bug with tailwind_content not loading properly
+
+### 2.8.0 (January 14th, 2022)
+* Upgraded to Tailwind 3 JIT
+* Added locale switch to layout form
+* Fixed missing French translations
+* Fixed z-index bug in Trix
+* Fixed Trix CSS bugs
+* Fixed ImageCollection bug with sortable
+* Updated gem dependencies
+
 ## 2.7
 
 ### 2.7.0 (December 23rd, 2021)
