@@ -53,6 +53,7 @@ Spina::Engine.routes.draw do
 
       post :sort, on: :collection
     end
+    resources :page_translations, only: [:destroy]
     resources :parent_pages
     resource :layout, controller: :layout, only: [:edit, :update]
 
@@ -92,8 +93,8 @@ Spina::Engine.routes.draw do
     root to: "pages#homepage"
 
     # Pages
-    get '/:locale/*id' => 'pages#show', constraints: {locale: /#{Spina.config.locales.join('|')}/ }
-    get '/:locale/' => 'pages#homepage', constraints: {locale: /#{Spina.config.locales.join('|')}/ }
+    get '/:locale/*id' => 'pages#show', constraints: {locale: /#{Spina.locales.join('|')}/ }
+    get '/:locale/' => 'pages#homepage', constraints: {locale: /#{Spina.locales.join('|')}/ }
     get '/*id' => 'pages#show', as: "page", controller: 'pages', constraints: -> (request) {
       request.path.exclude?(ActiveStorage.routes_prefix) &&
       !(Rails.env.development? && request.path.starts_with?('/rails/'))

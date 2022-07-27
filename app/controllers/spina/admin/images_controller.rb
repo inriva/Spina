@@ -5,7 +5,7 @@ module Spina
       before_action :set_breadcrumbs
 
       def index
-        @media_folders = MediaFolder.order(:name)
+        @media_folders = MediaFolder.order(:name).includes(:images)
         @images = Image.sorted.where(media_folder: @media_folder).with_attached_file.page(params[:page]).per(25)
       end
       
@@ -44,16 +44,25 @@ module Spina
       
       def update
         @image = Image.find(params[:id])
+        old_signed_id = @image.file&.blob&.signed_id
         @image.update(image_params) if params[:image].present?
         if params[:filename].present?
           extension = @image.file.filename.extension
           filename = "#{params[:filename]}.#{extension}"
           @image.file.blob.update(filename: filename)
         end
+        
         if @image.saved_change_to_media_folder_id?
           render :update
         else
-          redirect_to [:admin, @image]
+          # Replace all occurrences of the old signed blob ID 
+          # with the new ID in a background job
+          if @image.reload.file&.blob&.signed_id != old_signed_id
+            Spina::ReplaceSignedIdJob.perform_later(old_signed_id, @image.file&.blob&.signed_id)
+          end
+          
+          @media_folders = MediaFolder.order(:name)
+          render @image
         end
       end
 
@@ -81,7 +90,7 @@ module Spina
         end
         
         def image_params
-          params.require(:image).permit(:media_folder_id)
+          params.require(:image).permit(:media_folder_id, :file)
         end
 
     end

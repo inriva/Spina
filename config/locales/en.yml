@@ -6,6 +6,12 @@ en:
       spina/embeds/vimeo:
         url: vimeo.com/...
   activerecord:
+    errors:
+      models:
+        spina/page:
+          attributes:
+            title:
+              blank: Title required
     attributes:
       spina/account:
         address: Address
@@ -270,10 +276,15 @@ en:
       save_draft: Save draft
       saved: Page saved
       saving: Saving...
+      couldnt_be_saved: Page couldn't be saved
       search_engines: Search engines
       show_in_menu: invisible
       skip_to_first_child: forward to first child page
       sorting_saved: Sorting saved
+    page_translations:
+      delete: Delete translation (%{translation})
+      delete_confirmation: Are you sure you want to delete this translation <strong>(%{subject})</strong>?
+      deleted: Translation deleted
     permanently_delete: Permanently delete
     photos:
       cannot_be_created: 'Image could not be processed:'
@@ -338,6 +349,7 @@ en:
       new_entry: New entry
       optional: Optional
       rename: Rename
+      replace: Replace
       save_changes: Save changes
       saving: Saving...
     user_mailer:

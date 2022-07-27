@@ -2,12 +2,19 @@ Spina.configure do |config|
   # Locales
   # ===============
   # All locales your content should be available in.
-  # config.locales = [I18n.default_locale]
+  # Defaults to I18n.default_locale
+  # config.locales = [:en, :nl]
 
   # Backend path
   # ===============
   # Specify a backend path. Defaults to /admin.
   # config.backend_path = 'admin'
+
+  # Deprecated current account method
+  # ===============
+  # Uncomment the config below to disable 'current_account'.
+  # Use this if you are having a namespace conflict with the deprecated 'current_account' method.
+  # config.disable_current_account = true
   
   # Frontend routes
   # ===============

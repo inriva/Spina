@@ -15,15 +15,25 @@ module Spina
       name
     end
 
+    # Spina previously stored account preferences with symbols as keys.
+    # Because of CVE-2022-32224 we're changing that to strings instead.
+    # This fallback ensures backwards compatibility, but in the long run this
+    # should be refactored to use a simple JSONB-column with Postgres.
     def self.serialized_attr_accessor(*args)
       args.each do |method_name|
         define_method method_name do
+          if self.preferences.try(:[], method_name.to_sym).present?
+            ActiveSupport::Deprecation.warn("#{method_name} is stored as a symbol. Please set and save it again using #{method_name}= on your Spina::Account model to store it as a string. You can do this from the UI by saving your account preferences.")
+          end
+          
+          self.preferences.try(:[], method_name.to_s) || 
           self.preferences.try(:[], method_name.to_sym)
         end
 
         define_method "#{method_name}=" do |value|
           self.preferences ||= {}
-          self.preferences[method_name.to_sym] = value
+          self.preferences.except!(method_name.to_sym)
+          self.preferences[method_name.to_s] = value
         end
       end
     end

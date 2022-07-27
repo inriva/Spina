@@ -17,10 +17,12 @@ module Spina
 
       def create
         @attachments = params[:attachment][:files].map do |file|
+          next if file.blank? # Skip the blank string posted by the hidden files[] field
+          
           attachment = Attachment.create(attachment_params)
           attachment.file.attach(file)
           attachment
-        end
+        end.compact
         
         respond_to do |format|
           format.turbo_stream { render turbo_stream: turbo_stream.prepend("attachments", partial: "attachment", collection: @attachments)}
@@ -30,13 +32,21 @@ module Spina
       
       def update
         @attachment = Attachment.find(params[:id])
+        old_signed_id = @attachment.file&.blob&.signed_id
+        @attachment.update(attachment_params) if params[:attachment].present?
         if params[:filename].present?
           extension = @attachment.file.filename.extension
           filename = "#{params[:filename]}.#{extension}"
           @attachment.file.blob.update(filename: filename)
         end
-        
-        redirect_to [:admin, @attachment]
+
+        # Replace all occurrences of the old signed blob ID 
+        # with the new ID in a background job
+        if @attachment.reload.file&.blob&.signed_id != old_signed_id
+          Spina::ReplaceSignedIdJob.perform_later(old_signed_id, @attachment.file&.blob&.signed_id)
+        end
+                
+        render @attachment
       end
 
       def destroy

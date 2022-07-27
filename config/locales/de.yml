@@ -13,6 +13,12 @@ de:
       spina/embeds/vimeo:
         url: vimeo.com/...
   activerecord:
+    errors:
+      models:
+        spina/page:
+          attributes:
+            title:
+              blank: Titel erforderlich
     attributes:
       spina/account:
         address: Adresse
@@ -277,6 +283,7 @@ de:
       save_draft: Entwurf speichern
       saved: Seite gespeichert
       saving: wird gespeichert...
+      couldnt_be_saved: Seite konnte nicht gespeichert werden
       search_engines: Suchmaschinen
       show_in_menu: unsichtbar
       skip_to_first_child: Zur ersten Unterseite weiterleiten
@@ -345,6 +352,7 @@ de:
       new_entry: Neuer Eintrag
       optional: Optional
       rename: Umbenennen
+      replace: Ersetzen
       save_changes: Änderungen speichern
       saving: Speichern...
     user_mailer:

@@ -1,5 +1,43 @@
 # Spina CMS Changelog
 
+## 2.11
+
+### 2.11.0 (July 13th, 2022)
+*Security update*
+* Added support for symbols in serialized YAML column (RAILS CVE-2022-32224)
+
+* Added customizable tailwind plugins
+* Added touch:true to page_resource relation on page.rb 
+* Added button to delete translation
+* Added fallback to I18n.default_locale when not using Spina.config.locales
+* Updated gem dependencies
+
+## 2.10
+
+### 2.10.0 (April 6th, 2022)
+* Added support for replacing images/attachments in the media library
+* Fixed bug for repeater UI
+
+## 2.9
+
+### 2.9.1 (March 30th, 2022)
+* Fixed bug with attachment uploads
+* Refactored order options for Spina::Resource
+* Updated locales
+
+### 2.9.0 (March 15th, 2022)
+* Added translatable slugs for resources
+* Added large preview and download buttons to media library
+* Added missing German translations
+* Added active/current list item CSS to MenuPresenter
+* Fixed bug with infinite scrolling
+* Fixed bug with previewing translated pages
+* Fixed silent install generator
+* Fixed bug in render_404
+* Fixed CSS bugs
+* Updated documentation
+* Updated gem dependencies
+
 ## 2.8
 
 ### 2.8.1 (January 29nd, 2022)
