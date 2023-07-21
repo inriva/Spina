@@ -31,6 +31,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
+    - name: Install libvips
+      run: sudo apt-get install -y libvips
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -50,6 +53,11 @@ jobs:
         cp test/dummy/config/database.yml.ci test/dummy/config/database.yml
         bin/rails db:setup
         
+    - name: Compile assets
+      env:
+        RAILS_ENV: test
+      run: bin/rails app:assets:precompile
+
     - name: Run tests
       run: bin/rails test test/*
       

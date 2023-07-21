@@ -6,7 +6,7 @@ module Spina
 
     after_commit :update_resource_pages, on: [:update]
 
-    translates :slug, backend: :json
+    translates :slug, backend: :jsonb
 
     def pages
       case order_by
@@ -24,13 +24,12 @@ module Spina
         ResourcePagesUpdateJob.perform_later(id)
       end
     end
-    
+
     def order_by_options
       [
-        [Spina::Page.human_attribute_name(:title), "title"], 
+        [Spina::Page.human_attribute_name(:title), "title"],
         [Spina::Page.human_attribute_name(:created_at), "created_at"]
       ]
     end
-
   end
 end

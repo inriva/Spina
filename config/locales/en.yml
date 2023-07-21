@@ -131,6 +131,7 @@ en:
       insert: Insert document
       insert_multiple: Insert documents
       upload: Upload files
+      upload_one: Upload file
     cancel: Cancel
     choose_from_library: Choose from library
     close: Close
@@ -276,6 +277,7 @@ en:
       save_draft: Save draft
       saved: Page saved
       saving: Saving...
+      select_page: Select page
       couldnt_be_saved: Page couldn't be saved
       search_engines: Search engines
       show_in_menu: invisible
@@ -344,10 +346,12 @@ en:
     ui:
       cancel: Cancel
       delete: Delete
+      delete_item: "Delete %{item}"
       load_more: Load more
       move_to: Move to
       new_entry: New entry
       optional: Optional
+      or: or
       rename: Rename
       replace: Replace
       save_changes: Save changes

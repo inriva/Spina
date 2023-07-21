@@ -1,8 +1,8 @@
 <%= render Spina::UserInterface::HeaderComponent.new do |header| %>
-  <% header.actions do %>
+  <% header.with_actions do %>
     <% if @resource %>
       <%= link_to spina.edit_admin_resource_path(@resource), class: 'btn btn-default' do %>
-        <%= heroicon('cog', style: :solid, class: 'text-gray-300 w-5 h-5 -ml-1 mr-1') %>
+        <%= heroicon('cog-8-tooth', style: :solid, class: 'text-gray-300 w-5 h-5 -ml-1 mr-1') %>
         <%=t 'spina.resources.settings', label: @resource.label %>
       <% end %>
     <% end %>
@@ -12,7 +12,7 @@
     </div>
   <% end %>
   
-  <% header.navigation do %>
+  <% header.with_navigation do %>
     <nav class="-mb-1 md:-mb-3 mt-4">
       <ul class="inline-flex flex-wrap w-auto rounded-md bg-white">
         <%= render Spina::UserInterface::TabLinkComponent.new(spina.admin_pages_path, active: @resource.nil?) do %>
@@ -36,7 +36,7 @@
 <% if @pages.any? %>
   
   <div class="my-6 md:m-8 bg-white md:rounded-lg border-l-0 border-r-0 border md:border-r md:border-l border-gray-200 border-b-0 shadow-sm">
-    <%= render Spina::Pages::ListComponent.new(pages: @pages, sortable: @resource.nil? || @resource&.order_by&.blank?) %>
+    <%= render Spina::Pages::ListComponent.new(pages: @pages, sortable: @resource.nil? || @resource&.order_by.blank?) %>
   </div>
   
 <% else %>
