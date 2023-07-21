@@ -7,7 +7,7 @@ module Spina
       
       scope :with_filename, ->(query) do
         joins(:file_blob).where(
-          "active_storage_blobs.filename ILIKE ?",
+          "active_storage_blobs.filename LIKE ?",
           "%" + Image.sanitize_sql_like(query) + "%"
         )
       end
